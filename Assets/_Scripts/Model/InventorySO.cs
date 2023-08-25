@@ -136,6 +136,24 @@ namespace Inventory.Model
         {
             OnInventoryUpdate?.Invoke(GetCurrenInventoryState());
         }
+
+        public bool RemoveItem(int itemIndex, int amount)
+        {
+            if(itemIndex < inventoryItems.Count)
+            {
+                if (inventoryItems[itemIndex].IsEmpty) return false;
+                int remider = inventoryItems[itemIndex].Quantity - amount;
+                if (remider < 0)
+                    return false;
+                else if(remider == 0)
+                    inventoryItems[itemIndex] = InventoryItem.GetEmptyItem();
+                else
+                    inventoryItems[itemIndex] = inventoryItems[itemIndex].ChangeQuantity(remider);
+
+                InformAboutChange();
+            }
+            return true;
+        }
     }
 
     // lý do dùng struck là vì bảo mật dữ liệu, liên quan đến tính giá trị của struck

@@ -14,6 +14,7 @@ namespace Inventory
         [HideInInspector] public static event Action HideIvenntory;
         [SerializeField] Ui_InventoryPage inventoryPage;
         [SerializeField] InventorySO inventoryData;
+        [SerializeField] GameObject Player;
 
         public List<InventoryItem> initialItems = new List<InventoryItem>();
         private void Start()
@@ -63,7 +64,19 @@ namespace Inventory
 
         private void HandleItemActionRequested(int itemIndex)
         {
-
+            InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+            if (inventoryItem.IsEmpty) return;
+            //IItemAction itemAction = inventoryItem.Item as IItemAction;
+            bool isEnough = false;
+            if (inventoryItem.Item is IDestroyableItem)
+            {
+               isEnough = inventoryData.RemoveItem(itemIndex, 1);
+            }
+            if (inventoryItem.Item is IItemAction itemAction && isEnough)
+            {
+                itemAction.PerformAction(Player);
+            }
+            
         }
 
         private void HandleSwapItems(int itemIndex1, int itemIndex2)
