@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79a34d7a4744f714fad10a9329d5e06a, type: 3}
+  m_Script: {fileID: 11500000, guid: aa479af604ce4424eb031b08c748cfbd, type: 3}
   m_Name: Cherry
   m_EditorClassIdentifier: 
   <IsStakable>k__BackingField: 1
   <StackSize>k__BackingField: 99
   <Name>k__BackingField: Cherry
-  <Description>k__BackingField: '
-
-    Eat to heal'
+  <Description>k__BackingField: eat to heath
   <ItemImage>k__BackingField: {fileID: 21300000, guid: e84e6f82d2ef9904c9e089ef5d2758f0, type: 3}
+  modifiersData:
+  - startModifier: {fileID: 11400000, guid: 395eb0f8f9c762f46b47deb1f59e62f0, type: 2}
+    value: 5
